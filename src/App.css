@@ -11,6 +11,14 @@
     font-family: "Roboto", sans-serif;
 }
 
+html,
+body {
+    width: 100%;
+    height: fit-content;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -19,6 +27,7 @@ body {
     --color-bg: #00303f;
     --color-gray-light: #7d7d8a;
     --color-blue-primary: #1d5aba;
+    --color-blue-dark: #14438d;
     --color-blue-light: #e6edf9;
     --color-bg-dark: #0d1117;
     --color-bg-variant: #224955;

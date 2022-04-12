@@ -1,10 +1,11 @@
 import "./App.css";
-import QuizzSection from "./compoments/quizzSection/QuizzSection";
+import QuizzSection from "./compoments/quizzPage/QuizzSection";
+import TestResultsPage from "./compoments/testResultsPage/TestResultsPage";
 
 function App() {
     return (
         <div className="App">
-            <QuizzSection />
+            <TestResultsPage />
         </div>
     );
 }

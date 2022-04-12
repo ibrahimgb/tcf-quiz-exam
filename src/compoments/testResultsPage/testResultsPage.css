@@ -1,0 +1,25 @@
+.button {
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--color-gray-light);
+    color: black;
+    margin-top: auto;
+    margin-bottom: 1.5rem;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 0.6rem;
+    font-size: 0.9rem;
+    border-radius: 5rem;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.button:hover {
+    background-color: rgb(218, 218, 218);
+    transition: all 200ms ease-in-out 20ms;
+}
+
+.icon {
+    margin: 0.2rem;
+    margin-right: 0.4rem;
+}
