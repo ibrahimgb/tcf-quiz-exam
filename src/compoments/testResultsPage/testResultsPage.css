@@ -1,13 +1,18 @@
+:root {
+    --score: 400;
+}
+
 .button {
     display: flex;
     align-items: center;
     border: 1px solid var(--color-gray-light);
     color: black;
     margin-top: auto;
-    margin-bottom: 1.5rem;
+
     margin-left: 0.5rem;
     margin-right: 0.5rem;
     padding: 0.6rem;
+    padding-right: 0.8rem;
     font-size: 0.9rem;
     border-radius: 5rem;
     width: fit-content;
@@ -22,4 +27,338 @@
 .icon {
     margin: 0.2rem;
     margin-right: 0.4rem;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 0.5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.dir {
+    font-size: 0.9rem;
+    color: gray;
+    margin-left: 1rem;
+}
+.score-part {
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("../../resources/workingOnLaptop.jpg") no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    height: 20rem;
+
+    display: flex;
+    align-items: center;
+
+    flex-direction: column;
+}
+
+.score-part h2 {
+    color: white;
+    margin: 2rem;
+}
+.score-part .score {
+    color: var(--color-blue-primary);
+    width: min(40vw, 300rem);
+    height: fit-content;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+
+    border-radius: 0.5rem;
+    filter: drop-shadow(0 0 0.75rem rgb(143, 143, 143));
+}
+.score-part .score h1 {
+    font-size: 1.6rem;
+    margin: 0.5rem;
+}
+.score-part .score h1 span {
+    font-size: 2.6rem;
+    color: var(--color-blue-primary);
+}
+.score-part p {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: grey;
+}
+.percentage {
+    background-color: white;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: #111116;
+    height: 100vh;
+    align-items: center;
+}
+
+.progress {
+    width: 200px;
+    height: 200px;
+    font-size: 30px;
+    color: #fff;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+    background: #07070c;
+    text-align: center;
+    line-height: 200px;
+    margin: 20px;
+}
+
+.progress::after {
+    content: "%";
+}
+
+.progress .title {
+    position: relative;
+    z-index: 100;
+}
+
+.progress .overlay {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    background-color: #07070c;
+}
+
+.progress .left,
+.progress .right {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 10px solid #222235;
+    border-radius: 100px 0px 0px 100px;
+    border-right: 0;
+    transform-origin: right;
+}
+
+.progress .left {
+    animation: load1 1s linear forwards;
+}
+
+.progress:nth-of-type(2) .right,
+.progress:nth-of-type(3) .right {
+    animation: load2 0.5s linear forwards 1s;
+}
+
+.progress:last-of-type .right,
+.progress:first-of-type .right {
+    animation: load3 0.8s linear forwards 1s;
+}
+
+@keyframes load1 {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(180deg);
+    }
+}
+
+@keyframes load2 {
+    0% {
+        z-index: 100;
+        transform: rotate(180deg);
+    }
+
+    100% {
+        z-index: 100;
+        transform: rotate(270deg);
+    }
+}
+
+@keyframes load3 {
+    0% {
+        z-index: 100;
+        transform: rotate(180deg);
+    }
+
+    100% {
+        z-index: 100;
+        transform: rotate(315deg);
+    }
+}
+
+.score-sircle {
+    width: 180px;
+    height: 180px;
+    position: relative;
+    padding: 20px;
+}
+.outer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 160px;
+    width: 160px;
+    border-radius: 50%;
+
+    box-shadow: 6px 6px 10px -1px rgba(0, 0, 0, 0.15),
+        -6px -6px 10px -1px rgba(255, 255, 255, 0.7);
+}
+.inner {
+    height: 120px;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    box-shadow: inset 4px 4px 6px -1px rgba(0, 0, 0, 0.2),
+        inset -4px -4px 6px -1px rgba(255, 255, 255, 0.7),
+        -0.5px -0.5px 0px rgba(255, 255, 255, 1),
+        0.5px 0.5px 0px rgba(0, 0, 0, 0.15),
+        0px 12px 10px -10px rgba(0, 0, 0, 0.05);
+}
+#number {
+    font-weight: 600;
+    color: #555;
+}
+circle {
+    fill: none;
+    stroke: var(--color-blue-primary);
+    stroke-width: 20px; /*<----------------*/
+    stroke-dasharray: 437;
+    stroke-dashoffset: 437;
+
+    animation: animation 2s linear forwards;
+}
+svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+@keyframes animation {
+    100% {
+        stroke-dashoffset: var(--score);
+    }
+}
+
+.discription {
+    color: grey;
+    text-align: center;
+    margin: 2rem;
+    font-size: 1.1rem;
+}
+
+.answers-grid {
+    display: grid;
+    gap: 0rem;
+    grid-template-columns: repeat(auto-fill, max(6rem));
+    width: 90vw;
+}
+
+.answer {
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border: 2px solid gray;
+    border-radius: 0.4rem;
+    margin: 1rem;
+    box-shadow: -1px -1px 16px -1px rgba(190, 190, 190, 0.7);
+    -webkit-box-shadow: -1px -1px 16px -1px rgba(190, 190, 190, 0.7);
+    -moz-box-shadow: -1px -1px 16px -1px rgba(190, 190, 190, 0.7);
+}
+
+.wrong-answer {
+    border: 2px solid var(--color-red-primary);
+
+    color: var(--color-red-primary);
+}
+
+.correct-answer {
+    border: 2px solid var(--color-blue-primary);
+
+    color: var(--color-blue-primary);
+}
+
+.summary {
+    margin: auto;
+    margin-top: 25rem;
+    width: 90vw;
+}
+
+.summary h1 {
+    font-weight: 400;
+    font-size: 1.8rem;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 3rem;
+    margin-bottom: 2rem;
+}
+
+@media only screen and (max-width: 800px) {
+    .score-part .score {
+        width: 65vw;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .score-part .score {
+        width: 80vw;
+    }
+
+    .summary {
+        margin-top: 29rem;
+    }
+
+    .summary h1 {
+        font-size: 1.6rem;
+    }
+
+    .answer {
+        width: 3.5rem;
+        height: 3.5rem;
+    }
+    .answers-grid {
+        grid-template-columns: repeat(auto-fill, max(5rem));
+        justify-content: center;
+    }
+
+    header {
+        display: inline-block;
+        position: relative;
+    }
+
+    header .button {
+        z-index: 1;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgb(233, 233, 233);
+        width: 13rem;
+    }
 }
