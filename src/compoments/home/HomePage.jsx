@@ -1,10 +1,19 @@
 import { Link, animateScroll as scroll } from "react-scroll";
-
+import { Link as LinkTo } from "react-router-dom";
 import React from "react";
 import { HiOutlineArrowSmDown } from "react-icons/hi";
 import { IoIosArrowDown } from "react-icons/io";
 import testImg from "../../resources/test.png";
 import "./homePage.css";
+import { useDispatch, useSelector } from "react-redux";
+import { selectedType, changeType } from "../../store/typeSlice";
+const type = {
+    real_exam: "real_exam",
+    full_test: "full_test",
+    Oral_comprehension: "Oral_comprehension",
+    Language_structure: "Language_structure",
+    Written_comprehension: "Written_comprehension",
+};
 function HomePage() {
     const [dimension, setDimension] = React.useState(window.innerWidth);
     React.useEffect(() => {
@@ -19,7 +28,12 @@ function HomePage() {
         };
     });
     const [dropDownShowing, setDropDownShowing] = React.useState(false);
+    const dispatch = useDispatch();
 
+    /* selectedType = { selectedType };
+    setSelectedType = { setSelectedType };
+    type = { type };
+*/
     return (
         <>
             <header>
@@ -52,8 +66,9 @@ function HomePage() {
                                         conseils pour tcf
                                     </Link>
                                 </li>
-                                <li>s'inscrire</li>
-                                <li>login</li>
+                                <li>
+                                    <Link to="login">login/s'inscrire</Link>
+                                </li>
                             </ul>
                         ) : (
                             ""
@@ -72,9 +87,10 @@ function HomePage() {
                             </Link>
                         </li>
                         <li className="hover-underline-animation">
-                            s'inscrire
+                            <LinkTo className="linkTo" to="login">
+                                login/s'inscrire
+                            </LinkTo>
                         </li>
-                        <li className="hover-underline-animation">login</li>
                     </ul>
                 )}
             </header>
@@ -130,18 +146,48 @@ function HomePage() {
                 </div>
                 <div className="grid">
                     <div className="card">
-                        <h6 className="hover-underline-animation">
-                            Série d'entrainement n°17
-                        </h6>
-                        <p className="hover-underline-animation">
-                            Compréhension orale
-                        </p>
-                        <p className="hover-underline-animation">
-                            Structure de la langue
-                        </p>
-                        <p className="hover-underline-animation">
-                            Compréhension écrite
-                        </p>
+                        <LinkTo to="/quizz">
+                            <h6
+                                className="hover-underline-animation"
+                                onClick={() => {
+                                    dispatch(changeType(type.full_test));
+                                }}
+                            >
+                                Série d'entrainement n°1
+                            </h6>
+                        </LinkTo>
+                        <LinkTo
+                            to="/quizz"
+                            onClick={() => {
+                                dispatch(changeType(type.Oral_comprehension));
+                            }}
+                        >
+                            <p className="hover-underline-animation">
+                                Compréhension orale
+                            </p>
+                        </LinkTo>
+                        <LinkTo
+                            to="/quizz"
+                            onClick={() => {
+                                dispatch(changeType(type.Language_structure));
+                            }}
+                        >
+                            <p className="hover-underline-animation">
+                                Structure de la langue
+                            </p>
+                        </LinkTo>
+                        <LinkTo
+                            to="/quizz"
+                            onClick={() => {
+                                dispatch(
+                                    changeType(type.Written_comprehension)
+                                );
+                            }}
+                        >
+                            <p className="hover-underline-animation">
+                                Compréhension écrite
+                            </p>
+                        </LinkTo>
                     </div>
                     <div className="card">
                         <h6 className="hover-underline-animation">
@@ -408,5 +454,5 @@ function HomePage() {
         </>
     );
 }
-
+export const TYPE = type;
 export default HomePage;

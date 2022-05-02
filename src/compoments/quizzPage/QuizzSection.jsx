@@ -4,74 +4,51 @@ import OralComprehension from "./OralComprehension";
 import LanguageStructure from "./LanguageStructure";
 import WrittenComprehension from "./WrittenComprehension";
 import EndTheExamPopUp from "./EndTheExamPopUp";
+import Clock from "./Clock";
 import TcfContainerSummaryQuestion from "./TcfContainerSummaryQuestion";
+import { useDispatch, useSelector } from "react-redux";
 import { MdTimer } from "react-icons/md";
+import { selectedType, changeType } from "../../store/typeSlice";
+import { TYPE } from "../home/HomePage";
+import { Link } from "react-router-dom";
+//import { Clock } from "./Clock";
+
+import {
+    editUserAnswer,
+    removeUserAnswer,
+    selectQuestions,
+} from "../../store/quizzSlice";
 
 import { IoMdArrowDropdown } from "react-icons/io";
 
 import { HiOutlineArrowSmRight } from "react-icons/hi";
+//  dispatch(editAnswer(questionIndex,userAnswer));
+////  dispatch(removeAnswer(questionIndex));
 
 function QuizzSection() {
-    let questions = {
-        type: "writtenComprehension",
-        content: [
-            {
-                questionText: "What is the capital of France?",
-                answerOptions: [
-                    { answerText: "New York", isCorrect: false },
-                    { answerText: "London", isCorrect: false },
-                    { answerText: "Paris", isCorrect: true },
-                    { answerText: "Dublin", isCorrect: false },
-                ],
-                userAnswer: null,
-            },
-            {
-                questionText: "Who is CEO of Tesla?",
-                answerOptions: [
-                    { answerText: "Jeff Bezos", isCorrect: false },
-                    { answerText: "Elon Musk", isCorrect: true },
-                    { answerText: "Bill Gates", isCorrect: false },
-                    { answerText: "Tony Stark", isCorrect: false },
-                ],
-                userAnswer: null,
-            },
-            {
-                questionText: "The iPhone was created by which company?",
-                answerOptions: [
-                    { answerText: "Apple", isCorrect: true },
-                    { answerText: "Intel", isCorrect: false },
-                    { answerText: "Amazon", isCorrect: false },
-                    { answerText: "Microsoft", isCorrect: false },
-                ],
-                userAnswer: null,
-            },
-            {
-                questionText: "How many Harry Potter books are there?",
-                answerOptions: [
-                    { answerText: "1", isCorrect: false },
-                    { answerText: "4", isCorrect: false },
-                    { answerText: "6", isCorrect: false },
-                    { answerText: "7", isCorrect: true },
-                ],
-                userAnswer: null,
-            },
-        ],
-    };
+    const questions = useSelector(selectQuestions);
+    const userSelectedType = useSelector(selectedType);
+    console.log(userSelectedType);
+    console.log(TYPE.Oral_comprehension);
+    const dispatch = useDispatch();
+
     const [questionsSet, setQuestionsSet] = useState(questions.content);
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const [userAnswer, setUserAnswer] = useState(null);
 
     function setUserAnswerOfThisQuizz(index) {
         setUserAnswer(index);
-        questions.content[currentQuestion].userAnswer = index;
-        console.log("the user anser of " + currentQuestion + " is: " + index);
-        console.log(questionsSet);
-        setQuestionsSet((set) => {
+        //questions.content[currentQuestion].userAnswer = index;
+        dispatch(editUserAnswer({ currentQuestion, index }));
+        //dispatch(editAnswer(currentQuestion, index));
+        //console.log("the user anser of " + currentQuestion + " is: " + index);
+        //console.log(questionsSet);
+        /*setQuestionsSet((set) => {
             const newSet = [...set];
             newSet[currentQuestion].userAnswer = index;
             return newSet;
-        });
-        console.log(questionsSet);
+        });*/
+        // console.log(questionsSet);
     }
 
     const [showSummaryQuestion, setShowSummaryQuestion] = useState(false);
@@ -98,7 +75,7 @@ function QuizzSection() {
                             /{questionsSet.length < 9 ? "0" : ""}
                             {questionsSet.length}
                         </p>
-                        <IoMdArrowDropdown className="ioMdArrowDropdown" />
+                        {/* <IoMdArrowDropdown className="ioMdArrowDropdown" /> */}
                     </div>
 
                     {showSummaryQuestion ? (
@@ -117,24 +94,24 @@ function QuizzSection() {
                 </div>
                 <div className="timer">
                     {" "}
-                    <MdTimer /> 89:51
+                    {/*  <MdTimer /> */} <Clock />
                 </div>
             </div>
-            {questions.type === "oralComprehension" && (
+            {userSelectedType.type === TYPE.Oral_comprehension && (
                 <OralComprehension
                     question={questionsSet[currentQuestion]}
                     userAnswer={userAnswer}
                     setUserAnswer={setUserAnswerOfThisQuizz}
                 />
             )}
-            {questions.type === "languageStructure" && (
+            {userSelectedType.type === TYPE.Language_structure && (
                 <LanguageStructure
                     question={questionsSet[currentQuestion]}
                     userAnswer={userAnswer}
                     setUserAnswer={setUserAnswerOfThisQuizz}
                 />
             )}
-            {questions.type === "writtenComprehension" && (
+            {userSelectedType.type === TYPE.Written_comprehension && (
                 <WrittenComprehension
                     question={questionsSet[currentQuestion]}
                     userAnswer={userAnswer}
@@ -151,19 +128,30 @@ function QuizzSection() {
                 >
                     Arrêtez le test
                 </div>
-                <div
-                    className="next"
-                    onClick={() => {
-                        setCurrentQuestion(currentQuestion + 1);
-                        setUserAnswer(null);
-                    }}
-                >
-                    {currentQuestion + 1 === questionsSet.length
-                        ? "Terminé le test"
-                        : "Question suivante"}
-
-                    <HiOutlineArrowSmRight className="hiOutlineArrowSmRight" />
-                </div>
+                {currentQuestion + 1 === questionsSet.length ? (
+                    <Link
+                        to="/test-results"
+                        className="next"
+                        onClick={() => {
+                            setCurrentQuestion(currentQuestion + 1);
+                            setUserAnswer(null);
+                        }}
+                    >
+                        Terminé le test
+                        <HiOutlineArrowSmRight className="hiOutlineArrowSmRight" />
+                    </Link> //"Terminé le test"
+                ) : (
+                    <div
+                        className="next"
+                        onClick={() => {
+                            setCurrentQuestion(currentQuestion + 1);
+                            setUserAnswer(null);
+                        }}
+                    >
+                        Question suivante
+                        <HiOutlineArrowSmRight className="hiOutlineArrowSmRight" />
+                    </div>
+                )}
             </div>
 
             {endTheTestContinueShowing ? (

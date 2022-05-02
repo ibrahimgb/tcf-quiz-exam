@@ -5,9 +5,17 @@ import { AiOutlineHome } from "react-icons/ai";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { MdOutlineLoop } from "react-icons/md";
 import ProgressBar from "./ProgressBar";
+import { useDispatch, useSelector } from "react-redux";
+import { selectQuestions, resetAllUserAnswer } from "../../store/quizzSlice";
+import { Link } from "react-router-dom";
 
 function TestResultsPage() {
-    let questions = {
+    const dispatch = useDispatch();
+
+    const questions = useSelector(selectQuestions);
+    console.log(questions);
+
+    /*let questions = {
         type: "structure du langage",
         content: [
             {
@@ -28,7 +36,7 @@ function TestResultsPage() {
                     { answerText: "Bill Gates", isCorrect: false },
                     { answerText: "Tony Stark", isCorrect: false },
                 ],
-                userAnswer: 0,
+                userAnswer: null,
             },
             {
                 questionText: "The iPhone was created by which company?",
@@ -48,10 +56,10 @@ function TestResultsPage() {
                     { answerText: "6", isCorrect: false },
                     { answerText: "7", isCorrect: true },
                 ],
-                userAnswer: 3,
+                userAnswer: null,
             },
         ],
-    };
+    };*/
 
     function isCorrectAnswer(index) {
         let correctAnswerIndex = null;
@@ -99,8 +107,10 @@ function TestResultsPage() {
         let score = questions.content.length;
 
         for (let i = 0; i < questions.content.length; i++) {
-            if (isIncorrectAnswer(i)) {
+            if (!isIncorrectAnswer(i)) {
+                ///////////////////////////////////////////////////
                 score = score - 1;
+                console.log("is correct");
             }
         }
         console.log(score);
@@ -119,12 +129,20 @@ function TestResultsPage() {
 
     const [score, setScore] = useState(calculateScore());
     const summary = questions.content.map((element, index) => {
-        return <div className={addClass(index)}>{index}</div>;
+        return (
+            <div key={index} className={addClass(index)}>
+                {index}
+            </div>
+        );
     });
 
     const errorSummary = questions.content.map((element, index) => {
         if (isIncorrectAnswer(index) || element.userAnswer == null) {
-            return <div className={addClass(index)}>{index}</div>;
+            return (
+                <div key={index} className={addClass(index)}>
+                    {index}
+                </div>
+            );
         }
     });
 
@@ -132,14 +150,10 @@ function TestResultsPage() {
         <div className="main">
             <header>
                 <div className="dir">Home / Test TCF / Resultats de test</div>
-                <div className="button">
-                    {/*
-                    
-                    <AiOutlineHome className="icon" /> 
-
-                    */}
+                <Link className="button" to="/">
+                    <HiArrowNarrowRight className="icon" />
                     Retour à la page d'accueil
-                </div>
+                </Link>
             </header>
 
             <div className="score-part">
@@ -175,22 +189,20 @@ function TestResultsPage() {
                 <div className="answers-grid">{errorSummary}</div>
             </div>
             <div className="actions">
-                <div className="button">
-                    {/*
-                       
-                        <MdOutlineLoop className="icon" />
-
-                       */}
+                <Link
+                    to="/quizz"
+                    className="button"
+                    onClick={() => {
+                        dispatch(resetAllUserAnswer());
+                    }}
+                >
+                    <MdOutlineLoop className="icon" />
                     Try again
-                </div>
-                <div className="button">
-                    {/**
-                         
-                         <HiArrowNarrowRight className="icon" /> 
-                         
-                         */}
+                </Link>
+                <Link className="button" to="/">
+                    <HiArrowNarrowRight className="icon" />
                     Retour à la page d'accueil
-                </div>
+                </Link>
             </div>
         </div>
     );

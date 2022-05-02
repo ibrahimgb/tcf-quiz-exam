@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Amiri&family=Poppins:wght@300;400;500;600&family=Roboto:wght@100;400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Amiri&family=Arvo:wght@700&family=Poppins:wght@300;400;500;600&family=Roboto:wght@100;400;500&display=swap");
 header {
-    height: 55px;
+    height: 35px;
     margin: 0;
     padding-left: 2rem;
     padding-right: 2rem;
@@ -25,6 +25,9 @@ header ul li {
 }
 .hover-underline-animation:hover {
     color: var(--color-blue-dark);
+}
+.linkTo {
+    color: var(--color-blue-primary);
 }
 
 .hover-underline-animation:after {
@@ -94,7 +97,7 @@ main h2 {
     margin-right: 1rem;
     padding: 0.8rem;
     padding-right: 0.9rem;
-    font-size: 0.9rem;
+    font-size: 1rem;
     border-radius: 5rem;
     width: 14rem;
     cursor: pointer;

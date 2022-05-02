@@ -2,7 +2,7 @@ import React from "react";
 import IMG from "../../resources/tcf.jpeg";
 
 function WrittenComprehension({ question, userAnswer, setUserAnswer }) {
-    console.log("rerendering");
+    //console.log("rerendering");
     //console.log(question.questionText);
     const ids = ["A", "B", "C", "D"];
 
@@ -13,8 +13,8 @@ function WrittenComprehension({ question, userAnswer, setUserAnswer }) {
             setUserAnswer(null);
         }
     }
-    console.log("the thing that you are loking for is ");
-    console.log(question);
+    //console.log("the thing that you are loking for is ");
+    //console.log(question);
     const answerOptions = question.answerOptions.map((option, index) => {
         return (
             <div
