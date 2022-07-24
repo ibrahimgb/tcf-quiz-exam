@@ -29,9 +29,16 @@
 
 ## Key Features
 
-| Feature                                        | Screenshot                                                   |
+| Feature                                                  | Screenshot                                                   |
 | ---------------------------------------------- | ------------------------------------------------------------ |
-| Exam                                           | <img src="screenshots/main.png" width="300" /> |
+| <p width="400"> The user can select to train or test in real environment </p> | <img src="https://user-images.githubusercontent.com/59414164/180665273-9f64b73b-f9ad-41c7-ae4e-b636551bb5dd.jpg" width="550" />|
+| <p width="400">  Try the exam simulator which tests in a real environment. <br/> the duration is 90 minutes, which includes writing, listening, and reading. </p>   | <img src="https://user-images.githubusercontent.com/59414164/180665364-194bf489-6fbe-4b50-95ee-ad7bd2b9f0e3.jpg" width="550" />|         
+| <p>  Practice your language skills in listening or reading or rating, etch batch includes 15 quizzes in different levels. </p>         |  <img src="https://user-images.githubusercontent.com/59414164/180665372-4d1d1d0a-c9d5-4ef8-b28c-21ba3566c83f.jpg" width="550" />|                    
+| <p>  Etch quiz the user can select one of four options, the selected answers will get stored and evaluated.   </p>   |  <img src="https://user-images.githubusercontent.com/59414164/180665584-da18f6ad-1507-4c37-a5f0-364b4a72d8bc.jpg" width="400" />|   
+| <p>  The user can get his level after finishing the exam, where he can check his wrong answers.  </p>   |  <img src="https://user-images.githubusercontent.com/59414164/180666406-bc863bac-8d4f-4953-8fd2-56fa742a6a62.jpg" width="400" />|   
+
+
+
 
 
 
